@@ -3,7 +3,7 @@ import React from 'react'
 import { router } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
 
-const UserStory = () => {
+const UserStory = ({story}) => {
     return (
         <View style={{
             paddingTop : 50,
@@ -11,12 +11,12 @@ const UserStory = () => {
             gap : 15,
             alignItems: 'center',
         }}>
-            <Image src={'https://im.rediff.com/money/2015/may/08shuva4.jpg'} style={{ width: 300, height: 300, borderRadius: 50}} />
+            <Image src={`${story.links[0]}`} style={{ width: 300, height: 300, borderRadius: 50}} />
             <Text style={{
                 fontSize: 25,
                 fontWeight: 'bold'
             }}>
-                KISHORE
+                {story.title}
             </Text>
 
             <Text>
@@ -27,11 +27,14 @@ const UserStory = () => {
                 color: 'darkgreen'
             }}>
                 #farming #craft #agriculture
+                {story.tags.map((tag)=>{
+                    <Text>#{tag} </Text>
+                })}
             </Text>
             <Text style={{
                 fontSize: 15
             }}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor unde nostrum adipisci exercitationem ipsam libero dolore reiciendis atque neque quae dolorum placeat consequatur in explicabo soluta excepturi eos labore, est facilis sint ullam delectus? Sunt, sit molestias quas deleniti tenetur quae recusandae molestiae sint et.
+                {story.description}
             </Text>
 
             <Pressable style={{
@@ -40,7 +43,7 @@ const UserStory = () => {
             onPress={()=>{
                 router.push({
                     pathname : '/explore',
-                    params : {category : "FINANCE"} 
+                    params : {category : story.tags[0]} 
                 })
             }}>
                 <Text style={{

@@ -1,43 +1,41 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text, ScrollView } from 'react-native'
+import React, { useEffect, useState} from 'react'
 import UserStory from '../components/UserStory'
 import axios from 'axios'
 import { Link } from 'expo-router'
 
 const index = () => {
-  const handleSubmit = async () => {
-    try {
-      const response = await fetch('http:/192.168.81.93:5000/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify({ email: '251203@gmil.com', password: '12345678' }),
-      })
-      const data = await response.json();
-      console.log(data);
-    } catch (error) {
-      console.error('Login error:', error);
-    }
-  }
-  const handleSubmi1 = async () => {
-    const res = await axios.get('http:/192.168.81.93:5000/')
-    console.log(res.data)
-  }
+  const [posts, setposts] = useState([])
+  const fetchData = async () => {
+    const res = await fetch('http://192.168.81.93:5000/api/getposts/', {
+      method : "POST",
+      headers : {
+        'Content-type':'application/json'
+      },
+    })
+    const response = await res.json()
+    setposts(response)
+  };
+  
+  useEffect(()=>{
+    fetchData()
+  },[])
+
   return (
 
-    <View style={{
+    <ScrollView contentContainerStyle={{
       alignItems: 'center', justifyContent: 'center'
     }}>
       <Text>index</Text>
-      <UserStory />
-      <Text onPress={handleSubmit}>Hello</Text>
+      {posts.map((data) => (
+        <UserStory key={data._id} story={data} />
+      ))}
+      <Text >Hello</Text>
 
-      <Link href='/quest'>
-        <Text>quest page</Text>
+      <Link href='/login'>
+        <Text onPress={fetchData}>login page</Text>
       </Link>
-    </View>
+    </ScrollView>
   );
 };
 

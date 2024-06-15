@@ -9,15 +9,32 @@ import {
 } from "react-native";
 import { useState } from "react";
 import React from "react";
+import { UserContext } from "@/context";
+import { useContext } from "react";
+import axios from 'axios'
 
 const login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const {setUser} = useContext(UserContext)
 
-  const handleFormSubmit = () => {
-    console.log("Email:", email);
-    console.log("Password:", password);
+  const data = {email, password}
+
+  const handleFormSubmit = async () => {
+    const res = await fetch('http://192.168.81.93:5000/api/auth/login', {
+      method : "POST",
+      headers : {
+        'Content-type':'application/json'
+      },
+      body : JSON.stringify(data)
+    })
+    const response = await res.json()
+    setUser(response.token)
   };
+  const handleSubmit = async ()=> {
+    const rest = await axios.get('http://192.168.81.93:5000/')
+    console.log(rest.data)
+  }
   return (
     <View style={{ alignItems: "center", justifyContent: "center", flex: 1 }}>
       <Image
@@ -47,6 +64,7 @@ const login = () => {
           secureTextEntry
         />
         <Pressable
+        onPress={handleFormSubmit}
           style={{
             backgroundColor: "rgba(20,39,45,1)",
             alignItems: "center",
