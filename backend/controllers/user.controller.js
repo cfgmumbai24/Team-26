@@ -64,3 +64,16 @@ export const login = async (req, res) => {
 }
 
 
+export const getProfile =async (req,res)=>{
+    try {
+        const userName = req.user.username;
+        const user = await User.findById(userName);
+        if(!user){
+            res.status(404).json({message:"User not found"})
+        }
+        res.status(200).json(user);
+    } catch (error){
+        console.log("Error occured in getProfile",error);
+    }
+} 
+
