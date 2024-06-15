@@ -1,5 +1,7 @@
 import { View, Text, Image, Pressable } from 'react-native'
 import React from 'react'
+import { router } from 'expo-router'
+import { Ionicons } from '@expo/vector-icons'
 
 const UserStory = () => {
     return (
@@ -33,14 +35,22 @@ const UserStory = () => {
             </Text>
 
             <Pressable style={{
-                backgroundColor: 'rgba(20,39,45,1)', alignItems : 'center', justifyContent: 'center', width : 264, height: 50, borderRadius : 31
+                backgroundColor: 'rgba(20,39,45,1)', alignItems : 'center', justifyContent: 'center', width : 264, height: 50, borderRadius : 31, flexDirection : 'row'
+            }} 
+            onPress={()=>{
+                router.push({
+                    pathname : '/explore',
+                    params : {category : "FINANCE"} 
+                })
             }}>
                 <Text style={{
                     padding: 10,
+                    fontSize : 20,
                     color : 'white'
                 }}>
                     Explore Field
                 </Text>
+                <Ionicons name='arrow-forward-outline' color='white' size={30} />
             </Pressable>
         </View>
     )
