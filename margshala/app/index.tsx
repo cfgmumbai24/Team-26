@@ -33,7 +33,7 @@ const index = () => {
     <UserStory />
     <Text onPress={handleSubmit}>Hello</Text>
     </View>
-  )
-}
+  );
+};
 
-export default index
+export default index;
