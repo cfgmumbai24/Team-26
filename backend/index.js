@@ -3,8 +3,17 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 
-
 dotenv.config();
+
+mongoose
+    .connect(process.env.MONGO_URL)
+    .then(() => {
+        console.log("Connected to database");
+    })
+    .catch((err) => {
+        console.log(`Error occured during connection: ${err}`);
+    });
+
 
 const app = express();
 
