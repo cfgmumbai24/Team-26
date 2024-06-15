@@ -1,3 +1,4 @@
+import { router } from "expo-router";
 import React from "react";
 import {
   StyleSheet,
@@ -34,14 +35,15 @@ export default function Quest() {
       <Text style={styles.title}>Quest</Text>
       <ScrollView contentContainerStyle={styles.buttonsContainer}>
         {categories.map((category, index) => (
-          <TouchableOpacity key={index} style={styles.button}>
+          <TouchableOpacity
+            key={index}
+            style={styles.button}
+            onPress={() => router.push({ pathname: '/youtube', params: { category } })}
+          >
             <Text style={styles.buttonText}>{category}</Text>
           </TouchableOpacity>
         ))}
       </ScrollView>
-      <TouchableOpacity style={styles.submitButton}>
-        <Text style={styles.submitButtonText}>Submit</Text>
-      </TouchableOpacity>
     </View>
   );
 }
@@ -62,7 +64,7 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "space-around",
+    justifyContent: 'center',
   },
   button: {
     backgroundColor: "#d1d1d1",
