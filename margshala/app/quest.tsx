@@ -29,7 +29,7 @@ const categories = [
   "spa services",
 ];
 
-export default function Quest() {
+export default function quest() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Quest</Text>
