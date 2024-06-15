@@ -10,7 +10,7 @@ const index = () => {
         justifyContent: "center",
       }}
     >
-      <Link href="quest" style={{ marginTop: 30 }}>
+      <Link href="onboarding" style={{ marginTop: 30 }}>
         <Text>SignUP</Text>
       </Link>
       <Text>index</Text>
