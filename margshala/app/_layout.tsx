@@ -8,11 +8,14 @@ export default function RootLayout() {
     <UserContext.Provider value={{ user, setUser }} >
     <Stack>
       <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen name="home" options={{ headerShown: false }} />
       <Stack.Screen name="login" options={{ headerShown: false }} />
+      <Stack.Screen name="profile" options={{ headerShown: false }} />
       <Stack.Screen name="quest" options={{ headerShown: false }} />
       <Stack.Screen name="signup" options={{ headerShown: false }} />
       <Stack.Screen name="onboarding" options={{ headerShown: false }} />
       <Stack.Screen name="explore" options={{ headerShown: false }} />
+      <Stack.Screen name="khojshala" options={{ headerShown: false }} />
       <Stack.Screen name="youtube" options={{ headerShown: false }} />
     </Stack>
     </UserContext.Provider>

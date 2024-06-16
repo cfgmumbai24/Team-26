@@ -29,6 +29,7 @@ const youtube = () => {
   const { category } = useLocalSearchParams<{ category: string }>();
 
   const API_KEY = process.env.EXPO_PUBLIC_API_KEY
+  // const API_KEY = ""
   const YOUTUBE_API_URL = 'https://www.googleapis.com/youtube/v3/search';
 
   useEffect(() => {

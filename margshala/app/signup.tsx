@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { useState } from "react";
 import React from "react";
+import { Link } from "expo-router";
 
 const signup = () => {
   const [name, setName] = useState("");
@@ -19,16 +20,18 @@ const signup = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleFormSubmit = () => {
-    console.log("Form submitted!");
-    console.log("Name:", name);
-    console.log("Email:", email);
-    console.log("City:", city);
-    console.log("District:", district);
-    console.log("State:", state);
-    console.log("Username:", username);
-    console.log("Password:", password);
+  const data = {email, password, city, district, state, username, name}
+  const handleFormSubmit = async () => {
+    const res = await fetch('http://192.168.81.93:5000/api/auth/signup', {
+      method : "POST",
+      headers : {
+        'Content-type':'application/json'
+      },
+      body : JSON.stringify(data)
+    })
+    const response = await res.json()
   };
+
   return (
     <View style={{ alignItems: "center", justifyContent: "center", flex: 1 }}>
       <Image
@@ -88,6 +91,7 @@ const signup = () => {
           secureTextEntry
         />
         <Pressable
+        onPress={handleFormSubmit}
           style={{
             backgroundColor: "rgba(20,39,45,1)",
             alignItems: "center",
@@ -108,7 +112,7 @@ const signup = () => {
         </Pressable>
       </View>
       <Text style={{ fontSize: 15, paddingTop: 20 }}>
-        Already a user? LOGIN
+        Already a user? <Link href='/login'>LOGIN</Link>
       </Text>
     </View>
   );
