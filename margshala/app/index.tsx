@@ -36,9 +36,16 @@ const index = () => {
       }}
     >
       <Link href="onboarding" style={{ marginTop: 30 }}>
-        <Text>SignUP</Text>
+        <Text>Onboarding</Text>
+      </Link>
+      <Link href="khojshala" style={{ marginTop: 30 }}>
+        <Text>Khojshala</Text>
+      </Link>
+      <Link href="swarozgar" style={{ marginTop: 30 }}>
+        <Text>Swarozgar</Text>
       </Link>
       <Text>index</Text>
+
       <UserStory />
       <Text onPress={handleSubmit}>Hello</Text>
 
